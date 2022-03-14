@@ -10,7 +10,8 @@
 		"moduleResolution": "node",
 		"outDir": "lib",
 		"forceConsistentCasingInFileNames": true,
-		"lib": ["es2016", "dom"]
+		"lib": ["es2016", "dom"],
+		"declarationDir": "./lib"
 	},
-	"include": ["src"]
+	"include": ["src/*", "src/**/*"]
 }

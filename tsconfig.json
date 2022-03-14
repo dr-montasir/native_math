@@ -8,10 +8,10 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"moduleResolution": "node",
-		"outDir": "lib",
+		"outDir": "dist",
 		"forceConsistentCasingInFileNames": true,
 		"lib": ["es2016", "dom"],
-		"declarationDir": "./lib"
+		"declarationDir": "./dist"
 	},
 	"include": ["src/*", "src/**/*"]
 }

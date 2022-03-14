@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"description": "NATIVE MATH: A tiny math library for node.js, deno.js & JavaScript on browser",
 	"repository": "",
-	"main": "lib/index",
-	"typings": "lib/index",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "tsc -p . && npm run format",
 		"preversion": "npm run build",

@@ -1,6 +1,6 @@
 {
 	"name": "native_math",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "NATIVE MATH: A tiny math library for node.js, deno.js & JavaScript on browser",
 	"repository": "",
 	"main": "dist/index.js",

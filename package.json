@@ -1,10 +1,10 @@
 {
 	"name": "native_math",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "NATIVE MATH: A tiny math library for node.js, deno.js & JavaScript on browser",
 	"repository": "",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "index.js",
+	"types": "index.d.ts",
 	"scripts": {
 		"build": "tsc -p . && npm run format",
 		"preversion": "npm run build",

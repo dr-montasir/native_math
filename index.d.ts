@@ -13,7 +13,7 @@
  */
 /**
 /**
- * @name NATIVE MATH ERRORS
+ * @name NM ERRORS
  */
 declare const ERRORS: {
 		NM_0_1: string;
@@ -24,6 +24,7 @@ declare const ERRORS: {
 		NM_1_4: string;
 		NM_1_5: string;
 		NM_1_6: string;
+		NM_1_7: string;
 		NM_2_1: string;
 		NM_2_2: string;
 		NM_3_1: string;
@@ -81,7 +82,7 @@ declare const ERRORS: {
 	 */
 	LOG10E: number,
 	/**
-	 * The native functions
+	 * NATIVE MATH functions
 	 */
 	/**
 	 * @name abs0 function
@@ -114,36 +115,25 @@ declare const ERRORS: {
 	 */
 	radToDeg: (r: number) => number,
 	/**
-	 * @name Sine function
-	 * @description sine is the native function use to generate (sin, cos, tan, ..) functions
-	 */
-	sine: (r: number) => number,
-	/**
 	 * @name sineRad
-	 * @rule (0 < r < π/2), (π/2 < r < π), (2π < r < 3π/2), (3π/2 < r < 2π) => +, +, -, -
+	 * @rule sin.rad(number in rad: -∞*2π <= x <= ∞*2π) => (number: -1 <= x <= 1)
 	 */
-	sineRad: (r: number) => number,
+	sineRad: (r: number) => any,
 	/**
 	 * @name sineDeg
-	 * @rule (0 < r < 90), (90 < r < 180), (180 < r < 270), (270 < r < 360) => +, +, -, -
+	 * @rule sin.deg(number in deg: -∞ <= x <= ∞) => (number: -1 <= x <= 1)
 	 */
-	sineDeg: (r: number) => any,
+	sineDeg: (r: number) => number,
 	/**
-	 * @name asine
-	 */
-	asine: (r: number) => number,
-	/**
-	 * @name asineRad
+	 * @name asineRad radAsin
+	 * @rule rad.asin(number: -1 <= x <= 1) === asin(number: -1 <= x <= 1) => result in radian (number: -π/2 <= x <= π/2)
 	 */
 	asineRad: (r: number) => number,
 	/**
 	 * @name asineDeg
+	 * @rule deg.asin(number: -1 <= x <= 1) => result in degree (number: -90 <= x <= 90)
 	 */
 	asineDeg: (r: number) => number,
-	/**
-	 * @name Hyperbolic sine (sineh)
-	 */
-	sineh: (r: number) => number,
 	/**
 	 * @name Hyperbolic sine (sinehRad)
 	 */
@@ -153,21 +143,13 @@ declare const ERRORS: {
 	 */
 	sinehDeg: (r: number) => number,
 	/**
-	 * @name Inverse hyperbolic sine (asineh)
-	 */
-	asineh: (r: number) => number,
-	/**
 	 * @name Inverse hyperbolic sine (asinehRad)
 	 */
 	asinehRad: (r: number) => number,
 	/**
-	 * @name Inverse hyperbolic sineDeg (asinehDeg)
+	 * @name Inverse hyperbolic sineDeg (asinehDeg) deg.asinh(x)
 	 */
 	asinehDeg: (r: number) => number,
-	/**
-	 * @name cosine
-	 */
-	cosine: (r: number) => number,
 	/**
 	 * @name cosineRad
 	 */
@@ -177,10 +159,6 @@ declare const ERRORS: {
 	 */
 	cosineDeg: (r: number) => number,
 	/**
-	 * @name acosine
-	 */
-	acosine: (r: number) => number,
-	/**
 	 * @name acosineRad
 	 */
 	acosineRad: (r: number) => number,
@@ -188,10 +166,6 @@ declare const ERRORS: {
 	 * @name acosineDeg
 	 */
 	acosineDeg: (r: number) => number,
-	/**
-	 * @name Hyperbolic cosine (cosineh)
-	 */
-	cosineh: (r: number) => number,
 	/**
 	 * @name Hyperbolic cosine (cosinehRad)
 	 */
@@ -201,11 +175,8 @@ declare const ERRORS: {
 	 */
 	cosinehDeg: (r: number) => number,
 	/**
-	 * @name Inverse hyperbolic cosine (acosineh)
-	 */
-	acosineh: (r: number) => number,
-	/**
 	 * @name Inverse hyperbolic cosine (acosinehRad)
+	 * @note when r < 0, the function is returning NaN
 	 */
 	acosinehRad: (r: number) => number,
 	/**
@@ -214,6 +185,7 @@ declare const ERRORS: {
 	acosinehDeg: (r: number) => number,
 	/**
 	 * @name tangentRad
+	 * @note tan(n*PI) = 0 where n = 0,1,2, ..., 10, if n = 11, 12, 13, ..., the function returns an incorrect result.
 	 */
 	tangentRad: (r: number) => number,
 	/**
@@ -221,21 +193,14 @@ declare const ERRORS: {
 	 */
 	tangentDeg: (r: number) => number,
 	/**
-	 * @name atangent
-	 */
-	atangent: (r: number) => number,
-	/**
 	 * @name atangentRad
 	 */
 	atangentRad: (r: number) => number,
 	/**
 	 * @name atangentDeg
+	 * deg.atan()
 	 */
 	atangentDeg: (r: number) => number,
-	/**
-	 * @name Hyperbolic tangent (tangenth)
-	 */
-	tangenth: (r: number) => number,
 	/**
 	 * @name Hyperbolic tangent (tangenthRad)
 	 */
@@ -244,10 +209,6 @@ declare const ERRORS: {
 	 * @name Hyperbolic tangentDeg (tangenthDeg)
 	 */
 	tangenthDeg: (r: number) => number,
-	/**
-	 * @name Inverse hyperbolic tangent (atangenth)
-	 */
-	atangenth: (r: number) => number,
 	/**
 	 * @name Inverse hyperbolic tangent (atangenthRad)
 	 */
@@ -265,10 +226,6 @@ declare const ERRORS: {
 	 */
 	cotangentDeg: (r: number) => number,
 	/**
-	 * @name acotangent
-	 */
-	acotangent: (r: number) => number,
-	/**
 	 * @name acotangentRad
 	 */
 	acotangentRad: (r: number) => number,
@@ -276,10 +233,6 @@ declare const ERRORS: {
 	 * @name acotangentDeg
 	 */
 	acotangentDeg: (r: number) => number,
-	/**
-	 * @name Hyperbolic cotangent (cotangenth)
-	 */
-	cotangenth: (r: number) => number,
 	/**
 	 * @name Hyperbolic cotangent (cotangenthRad)
 	 */
@@ -289,10 +242,6 @@ declare const ERRORS: {
 	 */
 	cotangenthDeg: (r: number) => number,
 	/**
-	 * @name Inverse hyperbolic cotangent (acotangenth)
-	 */
-	acotangenth: (r: number) => number,
-	/**
 	 * @name Inverse hyperbolic cotangent (acotangenthRad)
 	 */
 	acotangenthRad: (r: number) => number,
@@ -300,10 +249,6 @@ declare const ERRORS: {
 	 * @name Inverse hyperbolic cotangent (acotangenthDeg)
 	 */
 	acotangenthDeg: (r: number) => number,
-	/**
-	 * @name secant
-	 */
-	secant: (r: number) => number,
 	/**
 	 * @name secantRad
 	 */
@@ -313,10 +258,6 @@ declare const ERRORS: {
 	 */
 	secantDeg: (r: number) => number,
 	/**
-	 * @name asecant
-	 */
-	asecant: (r: number) => number,
-	/**
 	 * @name asecantRad
 	 */
 	asecantRad: (r: number) => number,
@@ -324,10 +265,6 @@ declare const ERRORS: {
 	 * @name asecantDeg
 	 */
 	asecantDeg: (r: number) => number,
-	/**
-	 * @name Hyperbolic secant (secanth)
-	 */
-	secanth: (r: number) => number,
 	/**
 	 * @name Hyperbolic secant (secanthRad)
 	 */
@@ -337,10 +274,6 @@ declare const ERRORS: {
 	 */
 	secanthDeg: (r: number) => number,
 	/**
-	 * @name Inverse hyperbolic secant (asecanth)
-	 */
-	asecanth: (r: number) => number,
-	/**
 	 * @name Inverse hyperbolic secant (asecanthRad)
 	 */
 	asecanthRad: (r: number) => number,
@@ -348,10 +281,6 @@ declare const ERRORS: {
 	 * @name Inverse hyperbolic secant (asecanthDeg)
 	 */
 	asecanthDeg: (r: number) => number,
-	/**
-	 * @name cosecant
-	 */
-	cosecant: (r: number) => number,
 	/**
 	 * @name cosecantRad
 	 */
@@ -361,10 +290,6 @@ declare const ERRORS: {
 	 */
 	cosecantDeg: (r: number) => number,
 	/**
-	 * @name acosecant
-	 */
-	acosecant: (r: number) => number,
-	/**
 	 * @name acosecantRad
 	 */
 	acosecantRad: (r: number) => number,
@@ -372,10 +297,6 @@ declare const ERRORS: {
 	 * @name acosecantDeg
 	 */
 	acosecantDeg: (r: number) => number,
-	/**
-	 * @name Hyperbolic cosecant (cosecanth)
-	 */
-	cosecanth: (r: number) => number,
 	/**
 	 * @name Hyperbolic cosecant (cosecanthRad)
 	 */
@@ -385,10 +306,6 @@ declare const ERRORS: {
 	 */
 	cosecanthDeg: (r: number) => number,
 	/**
-	 * @name Inverse hyperbolic cosecant (acosecanth)
-	 */
-	acosecanth: (r: number) => number,
-	/**
 	 * @name Inverse hyperbolic cosecant (acosecanthRad)
 	 */
 	acosecanthRad: (r: number) => number,
@@ -397,7 +314,7 @@ declare const ERRORS: {
 	 */
 	acosecanthDeg: (r: number) => number,
 	/**
-	 * All native math functions
+	 * All nm functions
 	 */
 	/**
 	 * @name The abs function |-x| = x
@@ -513,8 +430,12 @@ declare const ERRORS: {
 	 */
 	cbrt: (r: number | number[]) => number | number[],
 	/**
-	 * @name Division Function. (r = numerator, e = denominator)
-	 */
+* @name Division Function. (r = numerator, e = denominator)
+* divi(0.4e-15, 1)
+    0
+    0.4e-15 / 1
+    4e-16
+*/
 	divi: (r: number | any[], e: number | any[]) => number | number[],
 	/**
 	 *
@@ -621,15 +542,26 @@ declare const ERRORS: {
 	 */
 	ceil: (r: number | number[]) => number | number[],
 	/**
-	 * @name sin
-	 * @example math.sin(0.523598775598299) = 0.5
+	 * Doubly exponential sequences
 	 */
-	sin: (r: number | number[]) => number | number[],
+	/**
+	 * @name fermat number => 3, 5, 17, 257, 65537, ..., Infinity
+	 * @equation F_{n}=2^{2^{n}}+1,}, where n is a non-negative integer
+	 */
+	fermat: (r: number | number[]) => number | number[],
+	/**
+	 * Trigonometric functions
+	 */
+	/**
+	 * @name sin
+	 * @example sin(0.5235987755982988) = 0.5
+	 */
+	sin: (r: number | number[]) => any,
 	/**
 	 * @name sinDeg
 	 * @example math.sin.deg(30) = 0.5
 	 */
-	sinDeg: (r: number | number[]) => any,
+	sinDeg: (r: number | number[]) => number | number[],
 	/**
 	 * @name asin
 	 */

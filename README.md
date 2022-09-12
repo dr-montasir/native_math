@@ -44,7 +44,7 @@ nm.rem(1.2, 0.5)   = 0.2      // nm.rem(1.2, 0.5)  === 0.2 returns true
 <html>
 	<head>
 		<title>NATIVE MATH</title>
-		<!--<script src="https://cdn.jsdelivr.net/npm/native_math@1.0.2/index.js"></script>-->
+		<!--<script src="https://cdn.jsdelivr.net/npm/native_math@2.0.1/index.js"></script>-->
 		<script src="https://cdn.jsdelivr.net/npm/native_math/index.min.js"></script>
 		<!--                This link is the latest mini version ☝                -->
 	</head>

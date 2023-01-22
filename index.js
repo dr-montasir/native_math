@@ -1,22 +1,30 @@
 'use strict';
 /**
  * @package : NATIVE MATH
+ * @version : 2.1.0
  * @author  : Montasir Mirghani
  * @npm     : https://www.npmjs.com/~dr-montasir
  * @gitHub  : https://github.com/dr-montasir
  */
 /**
  * @license MIT License
- * @copyright Copyright (c) 2020 - 2022 Montasir Mirghani
+ * @copyright Copyright (c) 2020 - 2023 Montasir Mirghani
  * @text Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 /**
-/**
- * @name NM ERRORS
+ * @class NM
  */
-const ERRORS = {
+class NM {}
+/**
+ * @name nm
+ */
+const nm = new NM(),
+	/**
+	 * @name NM ERRORS
+	 */
+	ERRORS = {
 		NM_0_1: 'NATIVE MATH ERROR No. 00 : 01: This function only accepts numbers',
 		NM_0_2: 'NATIVE MATH ERROR No. 00 : 02: fact() argument must be natural number (ℕ0) between 0 and 170',
 		NM_1_1: 'NATIVE MATH ERROR No. 01 : 01: This function accepting either a number or an array. In the case of an array, all elements must be a number',
@@ -87,7 +95,7 @@ const ERRORS = {
 	 */
 	LOG10E = Number(Math.LOG10E.toFixed(15)),
 	/**
-	 * MNJS customes functions
+	 * nm customes functions
 	 */
 	/**
 	 * @name mantissa (Decimal Part)
@@ -650,10 +658,11 @@ const ERRORS = {
 	 * @name Addition Operation @section Mathematical operations
 	 */
 	add = (r, e) => {
-		if ('number' == typeof r && 'number' == typeof e) return Number((r + e).toFixed(15));
-		if ('number' == typeof r && Array.isArray(e) && e.every((r) => 'number' == typeof r)) return e.map((e) => Number((r + e).toFixed(15)));
-		if ('number' == typeof e && Array.isArray(r) && r.every((r) => 'number' == typeof r)) return r.map((r) => Number((r + e).toFixed(15)));
-		if (Array.isArray(r) && Array.isArray(e) && r.length === e.length && r.every((r) => 'number' == typeof r) && e.every((r) => 'number' == typeof r)) return r.map((r, t) => Number((r + e[t]).toFixed(15)));
+		if ('number' == typeof r && 'number' == typeof e) return (r * ml10pow2(e, r) + e * ml10pow2(e, r)) / ml10pow2(e, r);
+		if ('number' == typeof r && Array.isArray(e) && e.every((r) => 'number' == typeof r)) return e.map((e) => (r * ml10pow2(e, r) + e * ml10pow2(e, r)) / ml10pow2(e, r));
+		if ('number' == typeof e && Array.isArray(r) && r.every((r) => 'number' == typeof r)) return r.map((r) => (r * ml10pow2(e, r) + e * ml10pow2(e, r)) / ml10pow2(e, r));
+		if (Array.isArray(r) && Array.isArray(e) && r.length === e.length && r.every((r) => 'number' == typeof r) && e.every((r) => 'number' == typeof r))
+			return r.map((r, t) => (r * ml10pow2(e[t], r) + e[t] * ml10pow2(e[t], r)) / ml10pow2(e[t], r));
 		throw new Error(ERRORS.NM_1_3);
 	},
 	/**
@@ -1317,197 +1326,138 @@ const ERRORS = {
 		if ('number' == typeof r) return acosecanthDeg(r);
 		if (Array.isArray(r) && r.every((r) => 'number' == typeof r)) return r.map((r) => acosecanthDeg(r));
 		throw new Error(ERRORS.NM_1_1);
-	},
-	useNM = () => {
-		let r = {};
-		return (
-			(r.e = E),
-			(r.pi = PI),
-			(r.phi = PHI),
-			(r.tau = TAU),
-			(r.ln2 = LN2),
-			(r.ln10 = LN10),
-			(r.log2e = LOG2E),
-			(r.log10e = LOG10E),
-			(r.abs0 = abs0),
-			(r.signx = signx),
-			(r.fact = fact),
-			(r.degToRad = degToRad),
-			(r.radToDeg = radToDeg),
-			(r.sineRad = sineRad),
-			(r.sineDeg = sineDeg),
-			(r.asineRad = asineRad),
-			(r.asineDeg = asineDeg),
-			(r.sinehRad = sinehRad),
-			(r.sinehDeg = sinehDeg),
-			(r.asinehRad = asinehRad),
-			(r.asinehDeg = asinehDeg),
-			(r.cosineRad = cosineRad),
-			(r.cosineDeg = cosineDeg),
-			(r.acosineRad = acosineRad),
-			(r.acosineDeg = acosineDeg),
-			(r.cosinehRad = cosinehRad),
-			(r.cosinehDeg = cosinehDeg),
-			(r.acosinehRad = acosinehRad),
-			(r.acosinehDeg = acosinehDeg),
-			(r.tangentRad = tangentRad),
-			(r.tangentDeg = tangentDeg),
-			(r.atangentRad = atangentRad),
-			(r.atangentDeg = atangentDeg),
-			(r.tangenthRad = tangenthRad),
-			(r.tangenthDeg = tangenthDeg),
-			(r.atangenthRad = atangenthRad),
-			(r.atangenthDeg = atangenthDeg),
-			(r.cotangentRad = cotangentRad),
-			(r.cotangentDeg = cotangentDeg),
-			(r.acotangentRad = acotangentRad),
-			(r.acotangentDeg = acotangentDeg),
-			(r.cotangenthRad = cotangenthRad),
-			(r.cotangenthDeg = cotangenthDeg),
-			(r.acotangenthRad = acotangenthRad),
-			(r.acotangenthDeg = acotangenthDeg),
-			(r.secantRad = secantRad),
-			(r.secantDeg = secantDeg),
-			(r.asecantRad = asecantRad),
-			(r.asecantDeg = asecantDeg),
-			(r.secanthRad = secanthRad),
-			(r.secanthDeg = secanthDeg),
-			(r.asecanthRad = asecanthRad),
-			(r.asecanthDeg = asecanthDeg),
-			(r.cosecantRad = cosecantRad),
-			(r.cosecantDeg = cosecantDeg),
-			(r.acosecantRad = acosecantRad),
-			(r.acosecantDeg = acosecantDeg),
-			(r.cosecanthRad = cosecanthRad),
-			(r.cosecanthDeg = cosecanthDeg),
-			(r.acosecanthRad = acosecanthRad),
-			(r.acosecanthDeg = acosecanthDeg),
-			(r.abs = abs),
-			(r.sign = sign),
-			(r.range = range),
-			(r.monolist = monolist),
-			(r.dtr = dtr),
-			(r.rtd = rtd),
-			(r.nts = nts),
-			(r.stn = stn),
-			(r.zeros = zeros),
-			(r.change = change),
-			(r.change.isEqual = change),
-			(r.change.isNotEqual = isNotEqual),
-			(r.change.isGreater = isGreater),
-			(r.change.isLess = isLess),
-			(r.change.isGreaterOrEqual = isGreaterOrEqual),
-			(r.change.isLessOrEqual = isLessOrEqual),
-			(r.change.isFiniteNum = isFiniteNum),
-			(r.change.isInfinity = isInfinity),
-			(r.change.isPlusInfinity = isPlusInfinity),
-			(r.change.isMinusInfinity = isMinusInfinity),
-			(r.change.isNAN = isNAN),
-			(r.add = add),
-			(r.cube = cube),
-			(r.cbrt = cbrt),
-			(r.divi = divi),
-			(r.fix = fix),
-			(r.hypot = hypot),
-			(r.inv = inv),
-			(r.log = log),
-			(r.log2 = log2),
-			(r.log10 = log10),
-			(r.log1p = log1p),
-			(r.max = max),
-			(r.min = min),
-			(r.sum = sum),
-			(r.mult = mult),
-			(r.nrt = nrt),
-			(r.pow = pow),
-			(r.sqr = sqr),
-			(r.sqrt = sqrt),
-			(r.subt = subt),
-			(r.exp = exp),
-			(r.expm1 = expm1),
-			(r.trunc = trunc),
-			(r.imul = imul),
-			(r.round = round),
-			(r.fround = fround),
-			(r.floor = floor),
-			(r.rib = rib),
-			(r.rem = rem),
-			(r.ceil = ceil),
-			(r.fermat = fermat),
-			(r.sin = sin),
-			(r.sin.rad = sin),
-			(r.sin.deg = sinDeg),
-			(r.asin = asin),
-			(r.asin.rad = asin),
-			(r.asin.deg = asinDeg),
-			(r.sinh = sinh),
-			(r.sinh.rad = sinh),
-			(r.sinh.deg = sinhDeg),
-			(r.asinh = asinh),
-			(r.asinh.rad = asinh),
-			(r.asinh.deg = asinhDeg),
-			(r.cos = cos),
-			(r.cos.rad = cos),
-			(r.cos.deg = cosDeg),
-			(r.acos = acos),
-			(r.acos.rad = acos),
-			(r.acos.deg = acosDeg),
-			(r.cosh = cosh),
-			(r.cosh.rad = cosh),
-			(r.cosh.deg = coshDeg),
-			(r.acosh = acosh),
-			(r.acosh.rad = acosh),
-			(r.acosh.deg = acoshDeg),
-			(r.tan = tan),
-			(r.tan.rad = tan),
-			(r.tan.deg = tanDeg),
-			(r.atan = atan),
-			(r.atan.rad = atan),
-			(r.atan.deg = atanDeg),
-			(r.tanh = tanh),
-			(r.tanh.rad = tanh),
-			(r.tanh.deg = tanhDeg),
-			(r.atanh = atanh),
-			(r.atanh.rad = atanh),
-			(r.atanh.deg = atanhDeg),
-			(r.cot = cot),
-			(r.cot.rad = cot),
-			(r.cot.deg = cotDeg),
-			(r.acot = acot),
-			(r.acot.rad = acot),
-			(r.acot.deg = acotDeg),
-			(r.coth = coth),
-			(r.coth.rad = coth),
-			(r.coth.deg = cothDeg),
-			(r.acoth = acoth),
-			(r.acoth.rad = acoth),
-			(r.acoth.deg = acothDeg),
-			(r.sec = sec),
-			(r.sec.rad = sec),
-			(r.sec.deg = secDeg),
-			(r.asec = asec),
-			(r.asec.rad = asec),
-			(r.asec.deg = asecDeg),
-			(r.sech = sech),
-			(r.sech.rad = sech),
-			(r.sech.deg = sechDeg),
-			(r.asech = asech),
-			(r.asech.rad = asech),
-			(r.asech.deg = asechDeg),
-			(r.csc = csc),
-			(r.csc.rad = csc),
-			(r.csc.deg = cscDeg),
-			(r.acsc = acsc),
-			(r.acsc.rad = acsc),
-			(r.acsc.deg = acscDeg),
-			(r.csch = csch),
-			(r.csch.rad = csch),
-			(r.csch.deg = cschDeg),
-			(r.acsch = acsch),
-			(r.acsch.rad = acsch),
-			(r.acsch.deg = acschDeg),
-			r
-		);
-	},
-	nm = useNM();
+	};
+nm.e = E;
+nm.pi = PI;
+nm.phi = PHI;
+nm.ln2 = LN2;
+nm.ln10 = LN10;
+nm.log2e = LOG2E;
+nm.log10e = LOG10E;
+nm.abs0 = abs0;
+nm.fact = fact;
+nm.abs = abs;
+nm.sign = sign;
+nm.range = range;
+nm.monolist = monolist;
+nm.dtr = dtr;
+nm.rtd = rtd;
+nm.nts = nts;
+nm.stn = stn;
+nm.zeros = zeros;
+nm.change = change;
+nm.change.isEqual = change;
+nm.change.isNotEqual = isNotEqual;
+nm.change.isGreater = isGreater;
+nm.change.isLess = isLess;
+nm.change.isGreaterOrEqual = isGreaterOrEqual;
+nm.change.isLessOrEqual = isLessOrEqual;
+nm.change.isFiniteNum = isFiniteNum;
+nm.change.isInfinity = isInfinity;
+nm.change.isPlusInfinity = isPlusInfinity;
+nm.change.isMinusInfinity = isMinusInfinity;
+nm.change.isNAN = isNAN;
+nm.add = add;
+nm.cube = cube;
+nm.cbrt = cbrt;
+nm.divi = divi;
+nm.fix = fix;
+nm.hypot = hypot;
+nm.inv = inv;
+nm.log = log;
+nm.log2 = log2;
+nm.log10 = log10;
+nm.log1p = log1p;
+nm.max = max;
+nm.min = min;
+nm.sum = sum;
+nm.mult = mult;
+nm.nrt = nrt;
+nm.pow = pow;
+nm.sqr = sqr;
+nm.sqrt = sqrt;
+nm.subt = subt;
+nm.exp = exp;
+nm.expm1 = expm1;
+nm.trunc = trunc;
+nm.imul = imul;
+nm.round = round;
+nm.fround = fround;
+nm.floor = floor;
+nm.rib = rib;
+nm.rem = rem;
+nm.ceil = ceil;
+nm.fermat = fermat;
+nm.sin = sin;
+nm.sin.rad = sin;
+nm.sin.deg = sinDeg;
+nm.asin = asin;
+nm.asin.rad = asin;
+nm.asin.deg = asinDeg;
+nm.sinh = sinh;
+nm.sinh.rad = sinh;
+nm.sinh.deg = sinhDeg;
+nm.asinh = asinh;
+nm.asinh.rad = asinh;
+nm.asinh.deg = asinhDeg;
+nm.cos = cos;
+nm.cos.rad = cos;
+nm.cos.deg = cosDeg;
+nm.acos = acos;
+nm.acos.rad = acos;
+nm.acos.deg = acosDeg;
+nm.cosh = cosh;
+nm.cosh.rad = cosh;
+nm.cosh.deg = coshDeg;
+nm.acosh = acosh;
+nm.acosh.rad = acosh;
+nm.acosh.deg = acoshDeg;
+nm.tan = tan;
+nm.tan.rad = tan;
+nm.tan.deg = tanDeg;
+nm.atan = atan;
+nm.atan.rad = atan;
+nm.atan.deg = atanDeg;
+nm.tanh = tanh;
+nm.tanh.rad = tanh;
+nm.tanh.deg = tanhDeg;
+nm.atanh = atanh;
+nm.atanh.rad = atanh;
+nm.atanh.deg = atanhDeg;
+nm.cot = cot;
+nm.cot.rad = cot;
+nm.cot.deg = cotDeg;
+nm.acot = acot;
+nm.acot.rad = acot;
+nm.acot.deg = acotDeg;
+nm.coth = coth;
+nm.coth.rad = coth;
+nm.coth.deg = cothDeg;
+nm.acoth = acoth;
+nm.acoth.rad = acoth;
+nm.acoth.deg = acothDeg;
+nm.sec = sec;
+nm.sec.rad = sec;
+nm.sec.deg = secDeg;
+nm.asec = asec;
+nm.asec.rad = asec;
+nm.asec.deg = asecDeg;
+nm.sech = sech;
+nm.sech.rad = sech;
+nm.sech.deg = sechDeg;
+nm.asech = asech;
+nm.asech.rad = asech;
+nm.asech.deg = asechDeg;
+nm.csc = csc;
+nm.csc.rad = csc;
+nm.csc.deg = cscDeg;
+nm.acsc = acsc;
+nm.acsc.rad = acsc;
+nm.acsc.deg = acscDeg;
+nm.csch = csch;
+nm.csch.rad = csch;
+nm.csch.deg = cschDeg;
+nm.acsch = acsch;
+nm.acsch.rad = acsch;
+nm.acsch.deg = acschDeg;
 'undefined' == typeof window ? ((module.exports.nm = nm), (module.exports = nm)) : 'object' == typeof module ? ((window.exports = nm), (module.exports = nm)) : (window.exports = nm);

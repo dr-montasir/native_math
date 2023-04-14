@@ -1,7 +1,7 @@
 'use strict';
 /**
  * @package : NATIVE MATH
- * @version : 2.1.0
+ * @version : 2.1.1
  * @author  : Montasir Mirghani
  * @npm     : https://www.npmjs.com/~dr-montasir
  * @gitHub  : https://github.com/dr-montasir

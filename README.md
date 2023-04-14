@@ -18,7 +18,7 @@
 
 [![http://placehold.jp/24/bd483b/fec82f/785x45.png?text=%3Cscript%20src%3D%22https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2Fnative_math%22%3E%3C%2Fscript%3E](http://placehold.jp/24/bd483b/fec82f/785x45.png?text=%3Cscript%20src%3D%22https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2Fnative_math%2Findex.js%22%3E%3C%2Fscript%3E)](https://www.jsdelivr.com/package/npm/native_math)
 
-## Some of the solutions provided by native math library
+## Some solutions provided by native math library
 
 ```js
 // JavaScript
@@ -44,7 +44,7 @@ nm.rem(1.2, 0.5)   = 0.2      // nm.rem(1.2, 0.5)  === 0.2 returns true
 <html>
 	<head>
 		<title>NATIVE MATH</title>
-		<!--<script src="https://cdn.jsdelivr.net/npm/native_math@2.1.0/index.js"></script>-->
+		<!--<script src="https://cdn.jsdelivr.net/npm/native_math@2.1.1/index.js"></script>-->
 		<script src="https://cdn.jsdelivr.net/npm/native_math/index.min.js"></script>
 		<!--                This link is the latest mini version ☝                -->
 	</head>
@@ -415,6 +415,16 @@ nm.fermat([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) // returns [5, 17, 257, ..., 1.340
 ---
 
 [![https://raw.githubusercontent.com/dr-montasir/public/main/native_math/images/react-native_math-plotlyjs.png](https://raw.githubusercontent.com/dr-montasir/public/main/native_math/images/react-native_math-plotlyjs.png)](https://react-native-math-plotlyjs.vercel.app)
+
+---
+
+### Solid.js Demo Project [https://reactive-sine-function.vercel.app]
+
+---
+
+[![https://raw.githubusercontent.com/dr-montasir/public/main/native_math/images/solidjs_native_math.gif](https://raw.githubusercontent.com/dr-montasir/public/main/native_math/images/solidjs_native_math.gif)](https://reactive-sine-function.vercel.app)
+
+---
 
 ## NATIVE MATH Object Keys
 
